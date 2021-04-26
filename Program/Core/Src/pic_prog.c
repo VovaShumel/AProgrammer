@@ -16,7 +16,7 @@
 #define     T_DIS                   100
 #define     T_RESET                 10000
 
-											// PIC12F
+											//  PIC12F
 #define     PIC12_PULSE_WIDTH       	5 	// Вес единицы младшего разряда — 100 нс
 
 											// PIC10F22x
