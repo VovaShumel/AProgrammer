@@ -1,0 +1,4 @@
+console.c:27:6:Console_UART_TxCpltCallback	16	static
+console.c:33:6:Console_UART_RxCpltCallback	32	static
+console.c:106:6:Console_UART_ErrorCallback	16	static
+console.c:112:6:Console_Init	16	static
