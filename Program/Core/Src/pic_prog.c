@@ -1,36 +1,35 @@
 #include "pic_prog.h"
-#include "string.h"
 
-#define     T_DLY                   1
+#define     T_DLY                      1
 #define     T_PINT_PROG             2500
 #define     T_PINT_CONF             5000
 #define     T_PINT_EEPROM           5000
-#define     T_ENTH                  250
+#define     T_ENTH                   250
 #define     T_ERAR                  2500
 #define     T_ERAB                  5000
-#define     T_PPDP                  5
-#define     T_HLD0                  5
-#define     T_DLY2                  1
-#define     T_ERA                   10000
+#define     T_PPDP                     5
+#define     T_HLD0                     5
+#define     T_DLY2                     1
+#define     T_ERA                  10000
 #define     T_PROG                  2000
-#define     T_DIS                   100
-#define     T_RESET                 10000
+#define     T_DIS                    100
+#define     T_RESET                10000
 
 											//  PIC12F
-#define     PIC12_PULSE_WIDTH       	5 	// Вес единицы младшего разряда — 100 нс
+#define     PIC12_PULSE_WIDTH      	   5 	// Вес единицы младшего разряда — 100 нс
 
 											// PIC10F22x
-#define     PIC10_MAX_ADDR           0x1FF
-#define     PIC10_USER_ID_ADDR       0x100
-#define     PIC10_LOAD_DATA_CMD      0x02
-#define     PIC10_READ_DATA_CMD      0x04
-#define     PIC10_INC_ADDR_CMD       0x06
-#define     PIC10_BEGIN_PROG_CMD     0x08
-#define     PIC10_END_PROG_CMD       0x0E
-#define     PIC10_BULK_ERASE_CMD     0x09
-#define     PIC10_DATA_MASK         0xFFF
-#define     PIC10_CONF_ADDR_IN_HEX  0xFFF
-#define     PIC10_PULSE_WIDTH          10 	// Вес единицы младшего разряда — 100 нс
+#define     PIC10_MAX_ADDR         0x1FF
+#define     PIC10_USER_ID_ADDR     0x100
+#define     PIC10_LOAD_DATA_CMD     0x02
+#define     PIC10_READ_DATA_CMD     0x04
+#define     PIC10_INC_ADDR_CMD      0x06
+#define     PIC10_BEGIN_PROG_CMD    0x08
+#define     PIC10_END_PROG_CMD      0x0E
+#define     PIC10_BULK_ERASE_CMD    0x09
+#define     PIC10_DATA_MASK        0xFFF
+#define     PIC10_CONF_ADDR_IN_HEX 0xFFF
+#define     PIC10_PULSE_WIDTH         10 	// Вес единицы младшего разряда — 100 нс
 
 											// PIC16F153XX
 #define PIC16_T_ENTS            	   1
@@ -80,8 +79,8 @@
 #define _PIC_SPI_MODE_TX spi->CR1 |= SPI_CR1_BIDIOE
 #define _PIC_SPI_MODE_RX spi->CR1 &= ~SPI_CR1_BIDIOE
 
-#define _PIC_SPI_DataSize6  spi->CR2  = ((spi->CR2) & ~SPI_CR2_DS) | SPI_CR2_DS_2 | SPI_CR2_DS_0   
-#define _PIC_SPI_DataSize16 spi->CR2  = ((spi->CR2) & ~SPI_CR2_DS) | SPI_CR2_DS_3 | SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0   
+#define _PIC_SPI_DataSize6  spi->CR2 = ((spi->CR2) & ~SPI_CR2_DS) | SPI_CR2_DS_2 | SPI_CR2_DS_0
+#define _PIC_SPI_DataSize16 spi->CR2 = ((spi->CR2) & ~SPI_CR2_DS) | SPI_CR2_DS_3 | SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0
 
 extern HEX_Line_TypeDef * FW_CACHE_Get_Flash_Line (int lineNumber);
 extern HEX_Line_TypeDef * FW_CACHE_Get_EEPROM_Line(int lineNumber);
@@ -93,7 +92,7 @@ uint8_t cntLatch  = 1;
 int pulse_width;
 
 #ifdef PIC_USE_SPI
-    void PIC_WriteSPI_8(uint8_t data){
+	void PIC_WriteSPI_8(uint8_t data){
         while((spi->SR & SPI_SR_TXE) != SPI_SR_TXE){}; // проверка что регистр пуст
         *(uint8_t *)&(spi->DR) = data;                 // записываем даные в регистр
         while((spi->SR & SPI_SR_BSY) == SPI_SR_BSY){};   

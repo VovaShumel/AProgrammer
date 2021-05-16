@@ -1,21 +1,4 @@
 /* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -26,17 +9,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
-#include "cnc.h"
-#include "console.h"
-#include "lcd_i2c.h"
-#include "my_print.h"
-
+#include "inc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -45,23 +22,18 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
-typedef enum
-{
+typedef enum {
 	CMD_IDLE,
 	CMD_GO_HOME,
 	CMD_UPDATE_ROTATE_TURNS,
 	CMD_MOVE_WITH_ARROWS,
 	CMD_START_DOZING,
-
 } USER_CMD_TypeDef;
-
 
 volatile USER_CMD_TypeDef user_cmd;
 
@@ -98,8 +70,7 @@ int settings_level   = 0;
 int settings_item    = 0;
 int settings_changed = 0;
 
-typedef struct
-{
+typedef struct {
 	char * caption;
 	char * unit;
 	int *  value;
@@ -116,43 +87,33 @@ const SETTINGS_ITEM_Typedef sett_item[] = {
 		{ "P.home speed", ".01mm/s",  &pump_home_speed,   10,  2000,  10 },
 };
 
-
-typedef enum
-{
+typedef enum {
 	VW_DOZING = 0,
 	VW_MANUAL,
 	VW_CHANGE,
 	VW_SETTINGS,
-
 	VW_LAST
-
 } SCREEN_VIEW_TypeDef;
 
 __IO SCREEN_VIEW_TypeDef screen_view = VW_DOZING;
 
 int tick_10ms = 0;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 #include "main_keys.c"
 #include "main_console.c"
 #include "main_cnc.c"
 #include "main_lcd.c"
 #include "main_loop.c"
 
-////////////////////////////////////////////////////////////////////////////////
-
-void Setup()
-{
+void Setup() {
 	Init_CNC();
 	Init_Console();
 	Init_Keys();
@@ -162,20 +123,17 @@ void Setup()
 
 	screen_to_refresh = 1;
 }
-////////////////////////////////////////////////////////////////////////////////
 
 #define P2F_CHANGE_STEP 5
 #define P2F_CHANGE_MAX  5000
 #define P2F_INDEX 2
 #define P2F_NAME "p2f "
-////////////////////////////////////////////////////////////////////////////////
 
 #define _ADD_CHAR(L,C) do {\
 	if (p<LCD_COLS) scr[L][p++] = C;\
 	} while(0)
 
-void screen_refresh()
-{
+void screen_refresh() {
 	int r = 0;
 	int p = 0;
 
@@ -263,7 +221,6 @@ void screen_refresh()
 	screen_to_refresh = 0;
 	lcd_to_refresh = 1; // refresh display
 }
-////////////////////////////////////////////////////////////////////////////////
 
 #define KEY_REPEAT_DELAY  100 /* in 10ms, e.g. for 100 delay is 100*10ms = 1000ms */
 #define KEY_REPEAT_PERIOD 20  /* in 10ms, e.g. for 100 delay is 100*10ms = 1000ms */
@@ -310,7 +267,6 @@ int handle_esc_to_change_view()
 	}
 	return 0;
 }
-////////////////////////////////////////////////////////////////////////////////
 
 void handle_key_events()
 {
@@ -461,7 +417,6 @@ void Handle_1ms_Timer() {
 	if (lcd_to_refresh)
 		lcd_refresh();
 }
-
 /* USER CODE END 0 */
 
 /**
@@ -471,7 +426,6 @@ void Handle_1ms_Timer() {
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -556,7 +510,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
 /* USER CODE END 4 */
 
 /**

@@ -1,6 +1,8 @@
 #ifndef PIC_PROG_H
 #define PIC_PROG_H
 
+#include "string.h"
+
 #define HEX_DATA_BYTES_IN_LINE 16
 #define HEX_LINE_SIZE (3+HEX_DATA_BYTES_IN_LINE)
 
@@ -31,6 +33,4 @@ void PIC_SPI_IRQHandler();
 
 void PIC_MSP_DeInit();
 
-
 #endif
-

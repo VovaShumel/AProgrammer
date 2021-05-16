@@ -138,7 +138,6 @@ void cmd_start_dozing()
 
 	screen_to_refresh = 1;
 }
-////////////////////////////////////////////////////////////////////////////////
 
 void cmd_go_home()
 {
@@ -159,18 +158,16 @@ void cmd_go_home()
 
 	screen_to_refresh = 1;
 }
-////////////////////////////////////////////////////////////////////////////////
 
-void Loop()
-{
-	  if (user_cmd)
-	  {
-		  if (user_cmd == CMD_UPDATE_ROTATE_TURNS) cmd_update_rotate_turns();
-		  if (user_cmd == CMD_MOVE_WITH_ARROWS)    cmd_move_with_arrows();
-		  if (user_cmd == CMD_START_DOZING)        cmd_start_dozing();
-		  if (user_cmd == CMD_GO_HOME)             cmd_go_home();
+void Loop() {
+//	  if (user_cmd) {
+//		  if (user_cmd == CMD_UPDATE_ROTATE_TURNS) cmd_update_rotate_turns();
+//		  if (user_cmd == CMD_MOVE_WITH_ARROWS)    cmd_move_with_arrows();
+//		  if (user_cmd == CMD_START_DOZING)        cmd_start_dozing();
+//		  if (user_cmd == CMD_GO_HOME)             cmd_go_home();
+//
+//		  user_cmd = CMD_IDLE;
+//	  }
 
-		  user_cmd = CMD_IDLE;
-	  }
+// TODO по клику кнопкой загрузить прошивку
 }
-////////////////////////////////////////////////////////////////////////////////
