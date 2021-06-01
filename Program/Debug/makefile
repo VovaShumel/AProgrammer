@@ -65,8 +65,8 @@ all: main-build
 main-build: AProgrammer.elf secondary-outputs
 
 # Tool invocations
-AProgrammer.elf: $(OBJS) $(USER_OBJS) E:\AProgrammer\Program\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "AProgrammer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\AProgrammer\Program\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AProgrammer.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+AProgrammer.elf: $(OBJS) $(USER_OBJS) E:\AProg\Program\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "AProgrammer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\AProg\Program\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AProgrammer.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

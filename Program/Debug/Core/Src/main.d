@@ -29,10 +29,11 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/i2c.h ../Core/Inc/main.h ../Core/Inc/usart.h \
  ../USB_DEVICE/App/usb_device.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/gpio.h ../Core/Inc/cnc.h \
- ../Core/Inc/console.h ../Core/Inc/lcd_i2c.h ../Core/Inc/my_print.h \
- ../Core/Src/main_keys.c ../Core/Src/main_console.c \
- ../Core/Src/main_cnc.c ../Core/Src/main_lcd.c ../Core/Src/main_loop.c
+ ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/gpio.h ../Core/Inc/inc.h \
+ ../Core/Inc/cnc.h ../Core/Inc/console.h ../Core/Inc/lcd_i2c.h \
+ ../Core/Inc/my_print.h ../Core/Src/main_keys.c \
+ ../Core/Src/main_console.c ../Core/Src/main_cnc.c ../Core/Src/main_lcd.c \
+ ../Core/Src/main_loop.c
 
 ../Core/Inc/main.h:
 
@@ -103,6 +104,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../USB_DEVICE/Target/usbd_conf.h:
 
 ../Core/Inc/gpio.h:
+
+../Core/Inc/inc.h:
 
 ../Core/Inc/cnc.h:
 
